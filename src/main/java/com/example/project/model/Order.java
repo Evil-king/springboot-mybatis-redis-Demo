@@ -1,11 +1,11 @@
 package com.example.project.model;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "tbl_product")
-public class Product implements Serializable {
+@Table(name = "tbl_order")
+public class Order {
     /**
      * 主键
      */
@@ -14,22 +14,32 @@ public class Product implements Serializable {
     private Integer id;
 
     /**
+     * 订单号
+     */
+    @Column(name = "order_no")
+    private String orderNo;
+
+    /**
      * 商品编号
      */
     @Column(name = "goods_no")
     private String goodsNo;
 
     /**
-     * 商品名称
+     * 用户编号
      */
-    @Column(name = "goods_name")
-    private String goodsName;
+    @Column(name = "customer_no")
+    private String customerNo;
 
     /**
-     * 商品价格
+     * 价格
      */
-    @Column(name = "goods_price")
-    private Long goodsPrice;
+    private BigDecimal money;
+
+    /**
+     * 支付渠道(001:支付宝,002微信)
+     */
+    private String channel;
 
     /**
      * 创建时间
@@ -42,12 +52,6 @@ public class Product implements Serializable {
      */
     @Column(name = "modify_time")
     private Date modifyTime;
-
-    /**
-     * 用户编号
-     */
-    @Column(name = "customer_no")
-    private String customerNo;
 
     /**
      * 获取主键
@@ -65,6 +69,24 @@ public class Product implements Serializable {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * 获取订单号
+     *
+     * @return order_no - 订单号
+     */
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    /**
+     * 设置订单号
+     *
+     * @param orderNo 订单号
+     */
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     /**
@@ -86,39 +108,57 @@ public class Product implements Serializable {
     }
 
     /**
-     * 获取商品名称
+     * 获取用户编号
      *
-     * @return goods_name - 商品名称
+     * @return customer_no - 用户编号
      */
-    public String getGoodsName() {
-        return goodsName;
+    public String getCustomerNo() {
+        return customerNo;
     }
 
     /**
-     * 设置商品名称
+     * 设置用户编号
      *
-     * @param goodsName 商品名称
+     * @param customerNo 用户编号
      */
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setCustomerNo(String customerNo) {
+        this.customerNo = customerNo;
     }
 
     /**
-     * 获取商品价格
+     * 获取价格
      *
-     * @return goods_price - 商品价格
+     * @return money - 价格
      */
-    public Long getGoodsPrice() {
-        return goodsPrice;
+    public BigDecimal getMoney() {
+        return money;
     }
 
     /**
-     * 设置商品价格
+     * 设置价格
      *
-     * @param goodsPrice 商品价格
+     * @param money 价格
      */
-    public void setGoodsPrice(Long goodsPrice) {
-        this.goodsPrice = goodsPrice;
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
+
+    /**
+     * 获取支付渠道(001:支付宝,002微信)
+     *
+     * @return channel - 支付渠道(001:支付宝,002微信)
+     */
+    public String getChannel() {
+        return channel;
+    }
+
+    /**
+     * 设置支付渠道(001:支付宝,002微信)
+     *
+     * @param channel 支付渠道(001:支付宝,002微信)
+     */
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     /**
@@ -155,23 +195,5 @@ public class Product implements Serializable {
      */
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    /**
-     * 获取用户编号
-     *
-     * @return customer_no - 用户编号
-     */
-    public String getCustomerNo() {
-        return customerNo;
-    }
-
-    /**
-     * 设置用户编号
-     *
-     * @param customerNo 用户编号
-     */
-    public void setCustomerNo(String customerNo) {
-        this.customerNo = customerNo;
     }
 }

@@ -14,11 +14,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 @Slf4j
@@ -35,11 +39,47 @@ public class ProjectApplicationTests {
 
     @Test
     public void setRedis() {
-        Condition condition = new Condition(Product.class);
-        Example.Criteria criteria = condition.createCriteria();
-        criteria.andEqualTo("goodsNo",1001);
-        List<Product> products = productMapper.selectByCondition(condition);
-        log.info("products={}",products.get(0));
+//        Condition condition = new Condition(Product.class);
+//        Example.Criteria criteria = condition.createCriteria();
+//        List<Product> products = productMapper.selectByCondition(condition);
+//        log.info("products={}",products);
+//        for(Product product : products){
+//            Map map = Maps.newHashMap();
+//            map.put("productProcie",product.getGoodsPrice());
+//            map.put("customerNo",product.getCustomerNo());
+//            redisUtil.setHash(product.getCustomerNo()+product.getGoodsName(),map);
+//        }
+
+//        String key = "手";
+//        Set<String> likeData = redisUtil.getLikeData(key);
+//        for(String str : likeData){
+//            Object productPrice = redisUtil.hget(str, "productProcie");
+//            log.info("productPrice={}",productPrice);
+//        }
+
+        long timeOut = 120000L;
+
+        Condition condition1 = new Condition(Product.class);
+        Example.Criteria criteria1 = condition1.createCriteria();
+        criteria1.andEqualTo("goodsNo", "NB001");
+        List<Product> products = productMapper.selectByCondition(condition1);
+
+
+        redisUtil.setEx(products.get(0).getGoodsNo(),products.get(0).getGoodsName(),60000);
+
+//        if (!CollectionUtils.isEmpty(products)) {
+//            long nowTime = new Date().getTime();
+//            long createTime = products.get(0).getCreateTime().getTime();
+//            long d = nowTime - createTime;
+//            if (d <= timeOut) { // 120秒后才能重新发送
+//                log.info("验证码已下发，请查收");
+//            } else {
+//                log.info("正常");
+//            }
+//        }
+
+//        String nb001 = redisUtil.get("NB001");
+//        log.info("customerNo={}",nb001);
     }
 
     @Test

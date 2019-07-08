@@ -30,8 +30,8 @@ public class CodeGenerator {
     /**
      * 项目路径相关
      */
-    private static final String PROJECT_PATH = "/Users/Macx/github/springboot-mybaits-redis"; // 项目基础路径
-    private static final String TEMPLATE_PATH = "/Users/Macx/github/springboot-mybaits-redis/src/main/resources/template"; // 代码模板路径
+    private static final String PROJECT_PATH = "/Users/Macx/github/springboot-mybatis-redis-Demo"; // 项目基础路径
+    private static final String TEMPLATE_PATH = "/Users/Macx/github/springboot-mybatis-redis-Demo/src/main/resources/template"; // 代码模板路径
     public static final String BASE_PACKAGE = "com.example.project";//项目基础包名称，根据自己公司的项目修改
     public static final String MODEL_PACKAGE = BASE_PACKAGE + ".model";//Model所在包
     public static final String MAPPER_PACKAGE = BASE_PACKAGE + ".dao";//Mapper所在包
@@ -57,7 +57,7 @@ public class CodeGenerator {
      * @param args
      */
     public static void main(String[] args) {
-        genCodeByCustomModelName("tbl_channel", "Channel");
+        genCodeByCustomModelName("tbl_order", "Order");
     }
 
 

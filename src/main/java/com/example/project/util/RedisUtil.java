@@ -34,8 +34,8 @@ public class RedisUtil {
      * String的get
      * @param key
      */
-    public void get(String key){
-        stringRedisTemplate.opsForValue().get(key);
+    public String get(String key){
+        return stringRedisTemplate.opsForValue().get(key);
     }
 
     /**
@@ -113,5 +113,10 @@ public class RedisUtil {
 
         return redisTemplate.opsForSet().remove(key,value);
     }
+
+    public Set getLikeData(String key){
+        return redisTemplate.keys("*" + key + "*");
+    }
+
 
 }
