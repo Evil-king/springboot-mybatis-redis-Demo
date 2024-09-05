@@ -6,6 +6,7 @@ import lombok.Data;
  * @author hwq
  * @date 2019/06/05
  */
+@Data
 public class UserDTO {
 
     private String name;

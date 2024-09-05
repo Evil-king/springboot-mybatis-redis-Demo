@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.nio.charset.Charset;
@@ -44,7 +43,6 @@ public class RedisConfiguration {
             this(Charset.forName("UTF8"));
         }
         public CustomStringRedisSerializer(Charset charset) {
-            Assert.notNull(charset, "Charset must not be null!");
             this.charset = charset;
         }
         public String deserialize(byte[] bytes) {
