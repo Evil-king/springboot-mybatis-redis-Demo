@@ -11,6 +11,5 @@
     <result column="goods_price" jdbcType="BIGINT" property="goodsPrice" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="customer_no" jdbcType="VARCHAR" property="customerNo" />
   </resultMap>
 </mapper>
